@@ -1,4 +1,5 @@
 import unittest
+
 from app.textnode import TextNode
 
 

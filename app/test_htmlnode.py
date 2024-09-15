@@ -33,6 +33,12 @@ class TestLeafNode(unittest.TestCase):
         with self.assertRaises(ValueError):
             node.to_html()
 
+    def test_equlitty(self):
+        node1 = LeafNode("click me", "a", {"href": "www.google.com"})
+        node2 = LeafNode("click me", "a", {"href": "www.google.com"})
+
+        self.assertEqual(node1, node2)
+
 
 class TestParentNode(unittest.TestCase):
     def test_to_html(self):
