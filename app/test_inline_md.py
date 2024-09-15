@@ -2,13 +2,14 @@ import unittest
 
 from enums import TextType
 from htmlnode import LeafNode
-from main import (
+from inline_md import (
     extract_images,
     extract_links,
     split_nodes_delimiter,
     split_nodes_imgs,
     split_nodes_links,
     text_node_to_html_node,
+    text_to_text_nodes,
 )
 from textnode import TextNode
 
@@ -59,6 +60,20 @@ class TestMain(unittest.TestCase):
                 TextNode("code block", TextType.CODE),
                 TextNode(" word, also another ", TextType.TEXT),
                 TextNode("huge code block", TextType.CODE),
+            ],
+            new_nodes,
+        )
+
+        node3 = TextNode("This is text with a **bold** word, also another **BOLD**", TextType.TEXT)
+        new_nodes = split_nodes_delimiter([node3], "**", TextType.BOLD)
+
+        self.assertEqual(
+            new_nodes,
+            [
+                TextNode("This is text with a ", TextType.TEXT),
+                TextNode("bold", TextType.BOLD),
+                TextNode(" word, also another ", TextType.TEXT),
+                TextNode("BOLD", TextType.BOLD),
             ],
             new_nodes,
         )
@@ -133,4 +148,24 @@ class TestMain(unittest.TestCase):
                 TextNode("to youtube", TextType.IMAGE, "https://www.youtube.com"),
             ],
             new_nodes,
+        )
+
+    def test_text_to_text_nodes(self):
+        md = "This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://google.com)"
+        nodes = text_to_text_nodes(md)
+
+        self.assertEqual(
+            nodes,
+            [
+                TextNode("This is ", TextType.TEXT),
+                TextNode("text", TextType.BOLD),
+                TextNode(" with an ", TextType.TEXT),
+                TextNode("italic", TextType.ITALIC),
+                TextNode(" word and a ", TextType.TEXT),
+                TextNode("code block", TextType.CODE),
+                TextNode(" and an ", TextType.TEXT),
+                TextNode("obi wan image", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg"),
+                TextNode(" and a ", TextType.TEXT),
+                TextNode("link", TextType.LINK, "https://google.com"),
+            ],
         )
