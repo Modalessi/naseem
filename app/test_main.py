@@ -2,7 +2,12 @@ import unittest
 
 from enums import TextType
 from htmlnode import LeafNode
-from main import split_nodes_delimiter, text_node_to_html_node
+from main import (
+    extract_images,
+    extract_links,
+    split_nodes_delimiter,
+    text_node_to_html_node,
+)
 from textnode import TextNode
 
 
@@ -54,4 +59,40 @@ class TestMain(unittest.TestCase):
                 TextNode("huge code block", TextType.CODE),
             ],
             new_nodes,
+        )
+
+    def test_extract_images(self):
+        md_text = """Example with Two Images
+        Here are two images displayed using Markdown:
+        ![img1](https://example.com/image1.jpg)
+        ![img2](https://example.com/image2.png)
+        """
+
+        imgs = extract_images(md_text)
+
+        self.assertEqual(
+            imgs,
+            [
+                ("img1", "https://example.com/image1.jpg"),
+                ("img2", "https://example.com/image2.png"),
+            ],
+            imgs,
+        )
+
+    def test_extract_links(self):
+        md_text = """Example with Two Links
+        Here are two links:
+        [link1](https://example.com/page1)
+        [link2](https://example.com/page2)
+        """
+
+        links = extract_links(md_text)
+
+        self.assertEqual(
+            links,
+            [
+                ("link1", "https://example.com/page1"),
+                ("link2", "https://example.com/page2"),
+            ],
+            links,
         )

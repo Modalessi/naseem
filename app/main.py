@@ -1,3 +1,5 @@
+import re
+
 from enums import TextType
 from htmlnode import HTMLNode, LeafNode, ParentNode
 from textnode import TextNode
@@ -59,10 +61,27 @@ def split_text_node(node: TextNode, delimiter: str, text_type: TextType) -> list
     return nodes
 
 
+def extract_images(text: str) -> list[tuple]:
+    img_regex = r"!\[(.*?)\]\((.*?)\)"
+    imgs = re.findall(img_regex, text)
+    return imgs
+
+
+def extract_links(text: str) -> list[tuple]:
+    links_regex = r"(?<!!)\[(.*?)\]\((.*?)\)"
+    links = re.findall(links_regex, text)
+    return links
+
+
 def main():
-    node = TextNode("This is text with a `code block` word", TextType.TEXT)
-    new_nodes = split_nodes_delimiter([node], "`", TextType.CODE)
-    print(*new_nodes, sep="\n")
+    md_text = """Example with Two Links
+        Here are two links:
+        [link1](https://example.com/page1)
+        [link2](https://example.com/page2)
+    """
+
+    links = extract_links(md_text)
+    print(links)
 
 
 if __name__ == "__main__":
