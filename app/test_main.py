@@ -6,6 +6,8 @@ from main import (
     extract_images,
     extract_links,
     split_nodes_delimiter,
+    split_nodes_imgs,
+    split_nodes_links,
     text_node_to_html_node,
 )
 from textnode import TextNode
@@ -95,4 +97,40 @@ class TestMain(unittest.TestCase):
                 ("link2", "https://example.com/page2"),
             ],
             links,
+        )
+
+    def test_split_nodes_links(self):
+        node = TextNode(
+            "This is text with a link [to google](https://www.google.dev) and [to youtube](https://www.youtube.com)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_links([node])
+
+        self.assertEqual(
+            new_nodes,
+            [
+                TextNode("This is text with a link ", TextType.TEXT),
+                TextNode("to google", TextType.LINK, "https://www.google.dev"),
+                TextNode(" and ", TextType.TEXT),
+                TextNode("to youtube", TextType.LINK, "https://www.youtube.com"),
+            ],
+            new_nodes,
+        )
+
+    def test_split_nodes_imgs(self):
+        node = TextNode(
+            "This is text with imgs ![to google](https://www.google.dev) and ![to youtube](https://www.youtube.com)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_imgs([node])
+
+        self.assertEqual(
+            new_nodes,
+            [
+                TextNode("This is text with imgs ", TextType.TEXT),
+                TextNode("to google", TextType.IMAGE, "https://www.google.dev"),
+                TextNode(" and ", TextType.TEXT),
+                TextNode("to youtube", TextType.IMAGE, "https://www.youtube.com"),
+            ],
+            new_nodes,
         )

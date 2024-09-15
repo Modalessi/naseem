@@ -73,15 +73,64 @@ def extract_links(text: str) -> list[tuple]:
     return links
 
 
-def main():
-    md_text = """Example with Two Links
-        Here are two links:
-        [link1](https://example.com/page1)
-        [link2](https://example.com/page2)
-    """
+def split_nodes_imgs(old_nodes: list[TextNode]):
+    new_nodes = []
 
-    links = extract_links(md_text)
-    print(links)
+    for node in old_nodes:
+        if node.text_type != TextType.TEXT:
+            new_nodes.append(node)
+        else:
+            new_nodes.extend(split_node_imgs(node))
+
+    return new_nodes
+
+
+def split_node_imgs(node: TextNode):
+    nodes = []
+    imgs = extract_images(node.text)
+    text = node.text
+    for img in imgs:
+        alt = img[0]
+        url = img[1]
+        md_stx = f"![{alt}]({url})"
+        splits = text.split(md_stx, 1)
+        nodes.append(TextNode(splits[0], TextType.TEXT))
+        nodes.append(TextNode(alt, TextType.IMAGE, url))
+        text = splits[1]
+
+    return nodes
+
+
+def split_nodes_links(old_nodes: list[TextNode]):
+    new_nodes = []
+
+    for node in old_nodes:
+        if node.text_type != TextType.TEXT:
+            new_nodes.append(node)
+        else:
+            new_nodes.extend(split_node_links(node))
+
+    return new_nodes
+
+
+def split_node_links(node: TextNode):
+    nodes = []
+    links = extract_links(node.text)
+    text = node.text
+    for link in links:
+        link_text = link[0]
+        url = link[1]
+        md_stx = f"[{link_text}]({url})"
+        splits = text.split(md_stx, 1)
+        nodes.append(TextNode(splits[0], TextType.TEXT))
+        nodes.append(TextNode(link_text, TextType.LINK, url))
+        text = splits[1]
+
+    return nodes
+
+
+def main():
+    print("hello world")
 
 
 if __name__ == "__main__":
