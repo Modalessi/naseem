@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 
 from block_md import *
@@ -36,8 +37,18 @@ def copy_content_helper(path: str):
     return contents
 
 
+def extract_title(md: str) -> str:
+    title = re.match(r"^# .+ *\n?", md, flags=re.IGNORECASE)
+
+    if title:
+        return title[0][1:].strip()
+
+    return "Untitled"
+
+
 def main():
-    copy_contents("static", "public")
+    print(extract_title("# hello world"))
+    print(extract_title("there is no title here"))
 
 
 if __name__ == "__main__":
