@@ -18,7 +18,7 @@ def text_node_to_html_node(text_node: TextNode) -> HTMLNode:
         TextType.ITALIC: LeafNode(value, "i"),
         TextType.CODE: LeafNode(value, "code"),
         TextType.LINK: LeafNode(value, "a", {"href": text_node.url}),
-        TextType.IMAGE: LeafNode("", "img", {"src": text_node.url}),
+        TextType.IMAGE: LeafNode(value, "img", {"src": text_node.url}),
     }[text_node.text_type]
 
 
