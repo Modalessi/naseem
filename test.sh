@@ -1,3 +1,3 @@
 #!/usr/bin/env zsh
 source env/bin/activate
-python -m unittest discover -s test/
+python -m unittest discover -s tests/

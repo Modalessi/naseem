@@ -1,32 +1,24 @@
-# Tolkien Fan Club
+# Simple Markdown
 
-**I like Tolkien**. Read my [first post here](/majesty)
+**This is a simple markdown file**. Read [first post here](/posts)
 
-> All that is gold does not glitter
+> an idiot admires complexity, a geinus admires simplicity -terry devis
 
-## Reasons I like Tolkien
+## Why python is great
 
-* You can spend years studying the legendarium and still not understand its depths
-* It can be enjoyed by children and adults alike
-* Disney *didn't ruin it*
-* It created an entirely new genre of fantasy
+* ideas to real wold example in seconds
+* indentation (yes i said it)
+* the language dynamic kinda encourage you to make everything a function
 
-## My favorite characters (in order)
+## my top 6 movies
 
-1. Gandalf
-2. Bilbo
-3. Sam
-4. Glorfindel
-5. Galadriel
-6. Elrond
-7. Thorin
-8. Sauron
-9. Aragorn
-
-Here's what `elflang` looks like (the perfect coding language):
+1. interstellar
+2. the dark knight
+3. inception
+4. the prestige
+5. 12 angry men
+6. fight club
 
 ```
-func main(){
-    fmt.Println("Hello, World!")
-}
+func main() {fmt.Println("i will rewrite this project in go btw") }
 ```
