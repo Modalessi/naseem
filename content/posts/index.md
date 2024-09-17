@@ -2,9 +2,12 @@
 
 [Back Home](/)
 
-this is ai generated btw
-
 ![Fight Club image](/images/fight-club.png)
+
+
+**this is ai generated content btw**
+
+
 > "The first rule of Fight Club is: You do not talk about Fight Club. The second rule of Fight Club is: You DO NOT talk about Fight Club!"
 
 In the pantheon of modern cinema and the broader realm of thought-provoking storytelling, few films can rival the intricate narrative and cultural impact of David Fincher's *Fight Club*. You can find more information about the movie [here](https://www.imdb.com/title/tt0137523/).
@@ -21,7 +24,7 @@ One cannot simply discuss *Fight Club* without acknowledging the bedrock upon wh
 2. The tragic saga of the unnamed Narrator
 3. The rise and fall of Project Mayhem
 
-```
+```python
 print("Fight")
 print("Club")
 print("Rules")

@@ -19,6 +19,8 @@
 5. 12 angry men
 6. fight club
 
-```
-func main() {fmt.Println("i will rewrite this project in go btw") }
+```go
+func main() {
+    fmt.Println("i will rewrite this project in go btw") 
+}
 ```

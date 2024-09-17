@@ -99,7 +99,7 @@ def to_list(block: str, ordered: bool):
 
 def to_code_block(block: str):
     value = block[3:-3]
-    return LeafNode(value, "code")
+    return ParentNode("pre", [LeafNode(value, "code")])
 
 
 def to_paragraph(block: str):
