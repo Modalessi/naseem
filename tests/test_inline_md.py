@@ -1,8 +1,8 @@
 import unittest
 
-from enums import TextType
-from htmlnode import LeafNode
-from inline_md import (
+from app.enums import TextType
+from app.htmlnode import LeafNode
+from app.inline_md import (
     extract_images,
     extract_links,
     split_nodes_delimiter,
@@ -11,7 +11,7 @@ from inline_md import (
     text_node_to_html_node,
     text_to_text_nodes,
 )
-from textnode import TextNode
+from app.textnode import TextNode
 
 
 class TestMain(unittest.TestCase):

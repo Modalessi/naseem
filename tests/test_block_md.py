@@ -1,7 +1,6 @@
 import unittest
 
-from block_md import block_to_block_type, md_to_blocks, md_to_html_node
-
+from app.block_md import block_to_block_type, md_to_blocks, md_to_html_node
 from app.enums import BlockType
 
 

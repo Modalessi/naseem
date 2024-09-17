@@ -4,9 +4,6 @@ import shutil
 from pathlib import Path
 
 from block_md import md_to_html_node
-from enums import TextType
-from inline_md import split_nodes_delimiter, text_to_text_nodes
-from textnode import TextNode
 
 
 def copy_contents(src_dir: str, dest_dir: str):

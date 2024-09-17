@@ -1,7 +1,7 @@
 import re
 
 from enums import TextType
-from htmlnode import HTMLNode, LeafNode, ParentNode
+from htmlnode import HTMLNode, LeafNode
 from textnode import TextNode
 
 

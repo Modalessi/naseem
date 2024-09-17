@@ -1,5 +1,4 @@
 import re
-from typing import Callable
 
 from enums import BlockType
 from htmlnode import HTMLNode, LeafNode, ParentNode
